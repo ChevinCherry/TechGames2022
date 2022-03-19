@@ -15,7 +15,7 @@ playListRoute = '/playlist'
 def getSong():
     id = request.args.get('id')
     if id == None:
-        raise ("No ID provided")
+        raise Exception("No ID provided")
     try:
         song = getSongFromDB(id)
     except:
@@ -29,7 +29,7 @@ def createNewSong():
     author = request.args.get('author')
     genre = request.args.get('genre')
     if id == None or title == None or author == None or genre == None:
-        raise("Invaid parameters for song!")
+        raise Exception("Invaid parameters for song!")
     writeSongToDB(Song(id, title, author, genre))
     return "success"
 
@@ -38,7 +38,7 @@ def createNewSong():
 def deleteSong():
     id = request.args.get('id')
     if id == None:
-        raise ("No ID provided")
+        raise Exception("No ID provided")
     deleteSongFromDB(id)
     return "success"
 
